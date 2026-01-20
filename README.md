@@ -1,4 +1,4 @@
-# Sampled Red List Index (SRLI) for South Korea
+# Sampled Red List Index (SRLI).
 
 The README file and the Codes are generated using Claude Opus 4.5 and reviewed by Kwanmok Kim.
 
@@ -13,7 +13,7 @@ This code was used for the project CBD Headline indicator 4.2 Genetic Diversity 
 
 This was necessary to calculate the minimum sample size (number of species) that could represent the genetic diversity of the nation.  
 
-The SBSTTA report suggests following this approach (Baillie et al. 2008) however, so the following codes were recreated (using Claude OPUS 4.5). 2026 January.
+The SBSTTA report suggests following this approach (Baillie et al. 2008), so the following codes were recreated (using Claude OPUS 4.5). 2026 January.
 
 ## Background
 
