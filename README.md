@@ -1,8 +1,6 @@
 # Sampled Red List Index (SRLI) for South Korea
 
 The README file and the Codes are generated using Claude Opus 4.5 and reviewed by Kwanmok Kim.
-Codes are meant to be compatible with Korean fonts hence requires additional package installation. 
-Therefore, you can skip some of the functions and steps. 
 
 ## Overview
 R implementation of the Sampled Red List Index methodology for assessing biodiversity trends, based on Baillie et al. (2008).
@@ -11,17 +9,20 @@ This repository contains R scripts to calculate the Red List Index (RLI) and det
 
 > Baillie, J.E.M., Collen, B., Amin, R., Akcakaya, H.R., Butchart, S.H.M., Brummitt, N., Meagher, T.R., Ram, M., Hilton-Taylor, C., & Mace, G.M. (2008). Toward monitoring global biodiversity. *Conservation Letters*, 1(1), 18-26. https://doi.org/10.1111/j.1755-263X.2008.00009.x
 
-I used this code for the project CBD Headline indicator 4.2 Genetic Diversity Indicator.
+This code was used for the project CBD Headline indicator 4.2 Genetic Diversity Indicator.
 
 This was necessary to calculate the minimum sample size (number of species) that could represent the genetic diversity of the nation.  
 
-The SBSTTA report suggets following this approach to calculate the number of species. There were no available codes so it was generated.
-
-Feel free to edit and share. 
+The SBSTTA report suggests following this approach (Baillie et al. 2008) however, so the following codes were recreated (using Claude OPUS 4.5). 2026 January.
 
 ## Background
 
 The Red List Index (RLI) measures trends in extinction risk based on IUCN Red List assessments. It enables tracking of overall extinction risk for taxonomic groups over time. The Sampled Red List Index (SRLI) extends this approach by using stratified sampling, making it feasible to assess large, species-rich taxonomic groups without requiring complete censuses.
+
+Codes are meant to be compatible with Korean fonts hence requires additional package installation. 
+
+Therefore, you can skip some of the functions and steps if you have a clean data. 
+
 
 ### Key Concepts
 
