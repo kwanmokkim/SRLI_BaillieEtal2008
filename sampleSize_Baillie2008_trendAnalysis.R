@@ -1,6 +1,8 @@
 #### Code to calculate sample size from two time points(t1 and t2) using the Baillie et al. 2008 ####
 # 1) previously I used the data (raw) that I extracted from the pdf.
-# 2) I then, used the raw2 which I acquired from NIBR. Hence, the data names are different. 
+# 2) I then, used the raw2 which I acquired from NIBR. Hence, the data names are different.
+# 3) If you have a tidy data run the functions and then move to step #2 for analyses. 
+
 
 # This code implements the Sampled Red List Index (SRLI) methodology from:
 # Baillie, J.E.M., et al. (2008). Toward monitoring global biodiversity. 
