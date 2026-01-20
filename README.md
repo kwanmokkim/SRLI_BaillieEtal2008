@@ -51,7 +51,6 @@ Following the Baillie et al. (2008) methodology, IUCN categories are assigned th
 SRLI_BaillieEtal2008/
 ├── README.md
 ├── .gitignore
-├── sampleSize_Baillie2008.R              # Core SRLI functions
 └── sampleSize_Baillie2008_trendAnalysis.R # Trend analysis and visualization
 ```
 
@@ -143,5 +142,6 @@ https://doi.org/10.1111/j.1755-263X.2008.00009.x
 
 ## Contact
 
-Kwan Mok Kim  
+Kwanmok Kim
+kwanmok.kim@gmail.com
 Korea Environment Institute (KEI)
