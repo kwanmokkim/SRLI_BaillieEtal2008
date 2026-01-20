@@ -423,6 +423,9 @@ df_taxa2<-df_taxa %>% filter(updateCategory != "신규" & !is.na(updateCategory)
 
 # #### 2. Analyses ######
 # ## Build t1/t2 vectors from your filtered df
+# Your code should have speciesName,early_category,later_category in a dataframe format. 
+
+
 v  <- prepare_status_vectors(df_taxa2)
 t1 <- v$t1
 t2 <- v$t2
