@@ -2,4 +2,5 @@
 .Rhistory
 .RData
 .Ruserdata
-sampleSize_Baillie2008_trendAnalysis_exactSampleSize.R
+.xlsx
+sampleSize_Baillie2008.R
