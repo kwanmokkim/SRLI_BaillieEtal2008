@@ -361,17 +361,21 @@ recommend_n_sign <- function(bt, wrong_thresh = 0.05) {
 
 
 ################## Example ####################
-# Uncomment and modify the code below to run the analysis
+# modify the code below to run the analysis
+# If your code is already tidy go to step 2 for analyses. 
 
-# library(dplyr)
-# library(readxl)
+ library(dplyr)
+ library(readxl)
 # 
 # #### 1. Import & Clean data ######
 # # The codes are relevant for South Korea data. It is better to clean your data yourself.
 # 
 # ## You do the I/O
-# raw2 <- read_excel("your_data_file.xlsx", sheet = 1)
-# 
+raw <- read_excel("S:/2차년도_과제/보고서_논문_제안서_첨부/KR_RedList_1438_1530_shortList.xlsx", sheet = 1)
+raw2 <- read_excel("S:/2차년도_과제/보고서_논문_제안서_첨부/국가생물적색목록_평가현황(24.12월_기준).xlsx", sheet = 1)
+str(raw2)
+
+ 
 # ## Clean up the data; with both t1 and t2
 # ## Your data should have columns for:
 # ##   - species name
@@ -379,13 +383,20 @@ recommend_n_sign <- function(bt, wrong_thresh = 0.05) {
 # ##   - later_category (IUCN category at time 2)
 # 
 # ## Example for Korean data:
-# # raw2.1 <- raw2 %>% 
-# #   mutate(
-# #     speciesName = 국명,
-# #     early_category = extract_category(평가범주_t1),
-# #     later_category = extract_category(평가범주_t2)
-# #   ) %>%
-# #   filter(!is.na(early_category) & !is.na(later_category))
+raw2.1<- raw2 %>% select(no., 분류군, 국명,평가년도...5, 평가범주...6, 평가년도...8, 평가범주...9, 변동현황,멸종위기종) %>%
+  mutate( taxa=분류군, speciesName=국명,
+          early_year=평가년도...5, 
+          early_category=평가범주...6,
+          later_year=평가년도...8, 
+          later_category=평가범주...9,
+          updateCategory=변동현황
+  ) %>%
+  mutate(early_category = extract_category(early_category),
+         later_category = extract_category(later_category),
+         early_year=as.numeric(early_year), later_year= as.numeric(later_year)
+  )  %>% 
+  select(no., taxa, speciesName, early_year,early_category,later_year, later_category, updateCategory) %>%
+  filter(early_year > 2000 & later_year > 2000)
 # 
 # ## Example for English data (categories already in standard format):
 # # df <- data.frame(
@@ -395,6 +406,21 @@ recommend_n_sign <- function(bt, wrong_thresh = 0.05) {
 # # )
 # 
 # 
+## View sample size
+categoryGivenSamples<-raw2.1 %>% select(taxa)  %>% table()
+categoryGivenSamplesNotDD<-raw2.1 %>% filter(updateCategory != "신규" & !is.na(updateCategory) & 
+                                               !is.na(early_category) & !is.na(later_category) &
+                                               early_category !="DD" & later_category !="DD" ) %>%
+  select(taxa)  %>% table()
+
+
+## You do the filtering to narrow down specific taxa (example: plants & insects)
+df_taxa <- subset(raw2.1, taxa %in% c("관속식물"))  # change taxa list as needed
+df_taxa
+df_taxa2<-df_taxa %>% filter(updateCategory != "신규" & !is.na(updateCategory) & 
+                               !is.na(early_category) & !is.na(later_category) &
+                               early_category !="DD" & later_category !="DD" )
+
 # #### 2. Analyses ######
 # ## Build t1/t2 vectors from your filtered df
 v  <- prepare_status_vectors(df_taxa2)
