@@ -2,5 +2,5 @@
 .Rhistory
 .RData
 .Ruserdata
-.xlsx
+*.xlsx
 sampleSize_Baillie2008.R
