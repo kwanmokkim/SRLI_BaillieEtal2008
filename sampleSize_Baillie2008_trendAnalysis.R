@@ -434,11 +434,19 @@ df_taxa2<-df_taxa %>% filter(updateCategory != "신규" & !is.na(updateCategory)
                                !is.na(early_category) & !is.na(later_category) &
                                early_category !="DD" & later_category !="DD" )
 
+## See the data frequencies across taxa
 df_taxa2 %>% select(later_category) %>% table()
+df_taxa2 %>% select(updateCategory) %>% table() %>% as.data.frame() %>% 
+  mutate(Percent = round(Freq / sum(Freq) * 100, 2))
 
+# Only for Korea data; 
+#analyzableData<-c(94,35,60,30,370,708,147,289,205,564,2502)
+#resultSRLI<-c(36,31,47,20,24,442,111,152,108,33,1004)
+#(resultSRLI/analyzableData)*100
 
 
 # #### 2. Analyses ######
+# Start here if you already have a tidy dataframe with columns species, early_category, later_category.
 # ## Build t1/t2 vectors from your filtered df
 # Your code should have speciesName,early_category,later_category in a dataframe format. 
 
