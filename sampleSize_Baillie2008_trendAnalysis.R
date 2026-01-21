@@ -385,6 +385,9 @@ str(raw2)
 # ##   - later_category (IUCN category at time 2)
 # 
 # ## Example for Korean data:
+# Make sure to remove NA (not applicable) categories that are in characters!
+# Make sure to remove NE (not evaluated) categories along with empty cells.
+
 raw2.1<- raw2 %>% select(no., 분류군, 국명,평가년도...5, 평가범주...6, 평가년도...8, 평가범주...9, 변동현황,멸종위기종) %>%
   mutate( taxa=분류군, speciesName=국명,
           early_year=평가년도...5, 
@@ -397,9 +400,14 @@ raw2.1<- raw2 %>% select(no., 분류군, 국명,평가년도...5, 평가범주..
          later_category = extract_category(later_category),
          early_year=as.numeric(early_year), later_year= as.numeric(later_year)
   )  %>% 
-  select(no., taxa, speciesName, early_year,early_category,later_year, later_category, updateCategory) %>%
-  filter(early_year > 2000 & later_year > 2000)
-# 
+  select(no., taxa, speciesName, early_year,early_category, later_year, later_category, updateCategory) %>%
+  filter(early_year > 2000 & later_year > 2000 & later_category != "NA" & early_category != "NA" & early_category != "NE" &
+           !is.na(early_category) & !is.na(later_category))
+
+raw2.1 %>% select(early_category)  %>% table()
+raw2.1 %>% select(later_category)  %>% table()
+
+
 # ## Example for English data (categories already in standard format):
 # # df <- data.frame(
 # #   speciesName = c("Species A", "Species B", "Species C", ...),
@@ -407,21 +415,28 @@ raw2.1<- raw2 %>% select(no., 분류군, 국명,평가년도...5, 평가범주..
 # #   later_category = c("NT", "VU", "CR", ...)
 # # )
 # 
-# 
-## View sample size
+
+
+str(raw2.1)
+
+## View sample size(to compare actual species that can be analysed)
 categoryGivenSamples<-raw2.1 %>% select(taxa)  %>% table()
 categoryGivenSamplesNotDD<-raw2.1 %>% filter(updateCategory != "신규" & !is.na(updateCategory) & 
                                                !is.na(early_category) & !is.na(later_category) &
                                                early_category !="DD" & later_category !="DD" ) %>%
-  select(taxa)  %>% table()
+                                               select(taxa)  %>% table()
 
 
-## You do the filtering to narrow down specific taxa (example: plants & insects)
-df_taxa <- subset(raw2.1, taxa %in% c("관속식물"))  # change taxa list as needed
+## You do the filtering to narrow down to a specific taxa (example: plants & insects)
+df_taxa <- subset(raw2.1, taxa %in% c("거미"))  # change taxa list as needed
 df_taxa
 df_taxa2<-df_taxa %>% filter(updateCategory != "신규" & !is.na(updateCategory) & 
                                !is.na(early_category) & !is.na(later_category) &
                                early_category !="DD" & later_category !="DD" )
+
+df_taxa2 %>% select(later_category) %>% table()
+
+
 
 # #### 2. Analyses ######
 # ## Build t1/t2 vectors from your filtered df
@@ -439,10 +454,10 @@ cat("N overlap:", truth$n_overlap, "\n")
 # 
 # ## Method 1: Bootstrap across sample sizes and plot (grid-based)
 # ## Good for visualization, but resolution limited by step_n
-bt <- bootstrap_srli(t1, t2, R = 50000, mode = "overlap", n_min = 0, step_n = 10, seed = 1023)
+bt <- bootstrap_srli(t1, t2, R = 50000, mode = "overlap", n_min = 50, step_n = 20, seed = 1023)
 plot_srli_single_panel(bt, wrong_thresh = 0.05,
-                       xlim=c(0,100),
-                       ylim_left=c(0,20))
+                       xlim=c(50,210),
+                       ylim_left=c(0,40))
 
 
 plot_srli_two_panel(bt, wrong_thresh = 0.05)
@@ -459,3 +474,9 @@ cat("Exact minimum n:", result$n_exact, "\n")
 # cat("Error rate at n:", result$final_rate, "\n")
 
 
+sum(94,37,63,32,401,1592,369,339,285,689)
+
+
+sum(94,35,60,30,370,708,147,289,205,564)
+
+sum(36,31,47,20,24,442,111,152,108,33)
