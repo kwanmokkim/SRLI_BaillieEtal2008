@@ -13,7 +13,9 @@ This code was used for the project CBD Headline indicator 4.2 Genetic Diversity 
 
 This was necessary to calculate the minimum sample size (number of species) that could represent the genetic diversity of South Korea.  
 
-The SBSTTA report suggests following this approach (Baillie et al. 2008), so the following codes were recreated (using Claude OPUS 4.5). Jan. 2026.
+The SBSTTA report suggests following this approach (Baillie et al. 2008), so the following codes were recreated (using Claude OPUS 4.5). Jan. 2026. 
+
+Please let me know if there is anything wrong with the code. 
 
 ## Background
 
