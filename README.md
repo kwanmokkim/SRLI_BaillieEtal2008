@@ -1,6 +1,8 @@
 # Sampled Red List Index (SRLI).
 
 The README file and the Codes are generated using Claude Opus 4.5 and reviewed by Kwanmok Kim.
+Feel free to try it and please give me any feedback.
+I personally didn't have any issues applying it to the Korea dataset. 
 
 ## Overview
 R implementation of the Sampled Red List Index methodology for assessing biodiversity trends, based on Baillie et al. (2008).
