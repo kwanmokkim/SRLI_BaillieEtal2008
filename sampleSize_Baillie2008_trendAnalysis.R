@@ -3,7 +3,7 @@
 # 2) I then, used the raw2 which I acquired from NIBR. Hence, the data names are different.
 # 3) If you have a tidy data run the functions and then move to step #2 for analyses. 
 
-# Changed folder structures.....
+# Changed folder structures.....??
 
 
 # This code implements the Sampled Red List Index (SRLI) methodology from:
